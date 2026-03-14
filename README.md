@@ -1,44 +1,122 @@
-# Breast Tumor Classification using Machine Learning
+# Breast Cancer Classification using Random Forest (From Scratch)
 
-## Types of Tumor
+##  Project Overview
+This project implements a **Random Forest classifier from scratch in Python** to predict whether a breast tumor is **malignant (M)** or **benign (B)** using the **Wisconsin Diagnostic Breast Cancer dataset (WDBC)**.
 
-- BENIGN TUMOR
-  - Non-Cancerous
-  - Capsulated
-  - Slow growing 
-  - Do Not Metastasize (don’t spread to other parts of the body)
-  - Cells are normal
-- MALIGNANT TUMOR
-  - Cancerous
-  - Non-Capsulated
-  - Fast Growing
-  - Metastasize (spread to other parts of the body)
-  - Cells with large, dark nuclei, may have abnormal shape.
+Instead of using built-in machine learning libraries like `sklearn.ensemble.RandomForestClassifier`, this implementation builds the algorithm manually to understand the internal working of **Decision Trees, Gini Impurity, Bagging, and Random Feature Selection**.
 
-## Fine Needle Aspiration
+---
 
-Fine needle aspiration is a type of biopsy procedure. In fine needle aspiration, a thin needle is inserted into an area of abnormal appearing tissue or body fluid. As with other types of biopsies, the sample collected during fine needle aspiration can help make a diagnosis or rule out a condition such as cancer.
+##  Key Concepts Implemented
 
-## Workflow
+- Decision Tree using **Gini Impurity**
+- Random Feature Selection
+- Bootstrapping (**Bagging**)
+- Random Forest Ensemble Learning
+- Majority Voting for Predictions
+- Model Evaluation using **Accuracy and Confusion Matrix**
 
-1. **Customer Data:** Collect the required data from all the customers.
-2. **Data Pre-processing:** Preparing the raw data and making it suitable for a machine learning model. 
-3. **Train Test Split:** A train test split is when you split your data into a training set and a testing set.
-4. **Logistic Regression Model:** Logistic regression is the process of modeling the probability of a discrete outcome given an input variable.
-5. **New Data for Trained Logistic Regression Model:** Provide new data to the trained Logistic Regression Model to check the accuracy of the model.
-6. **Prediction:** The trained logistic regression model will now predict whether the given data will be Benign or Malignant.
+---
 
-## Libraries used:-
+##  Dataset
 
-- Numpy: the standard for working with numerical data in Python.
-- Pandas: Python library used for working with data sets.
-- Matplotlib: Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. 
-- Seaborn: Seaborn is a Python data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
-- SK Learn: a Python library to implement machine learning models and statistical modeling. 
-- Pickle: Python's Pickle module is a popular format used to serialize and deserialize data types.
+Dataset used: **Wisconsin Diagnostic Breast Cancer (WDBC)**
 
-## About Dataset
+Each sample contains:
 
-This is a classic dataset for training and benchmarking machine learning algorithms.
-- Biopsy features for classification of 569 malignant (cancer) and benign (not cancer) breast masses.
-- Features were computationally extracted from digital images of fine needle aspirate biopsy slides. Features correspond to properties of cell nuclei, such as size, shape, and regularity. The mean, standard error, and worst value of each of the 10 nuclear parameters are reported for a total of 30 features.
+- 30 numerical features describing cell nuclei characteristics
+- A label indicating:
+  - **M → Malignant**
+  - **B → Benign**
+
+Dataset source:
+
+https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)
+
+---
+
+
+---
+
+##  How the Model Works
+
+###  Data Loading
+The dataset is loaded using **Pandas** and converted into **NumPy arrays**.
+
+###  Train-Test Split
+The dataset is divided into:
+
+- **75% Training Data**
+- **25% Testing Data**
+
+### Decision Tree Construction
+Each decision tree:
+
+- Uses **Gini Impurity** to determine the best split
+- Recursively splits nodes until:
+  - Maximum depth is reached
+  - A pure node is found
+
+###  Random Forest Training
+
+The Random Forest is built by:
+
+1. Randomly sampling training data (**Bootstrapping**)
+2. Training multiple decision trees
+3. Combining predictions using **majority voting**
+
+###  Prediction
+
+Each tree predicts a class label.  
+Final prediction is determined using majority vote from the tree
+
+
+
+---
+
+##  Model Evaluation
+
+Performance is evaluated using:
+
+- **Accuracy**
+- **Confusion Matrix**
+
+Confusion matrix is visualized using **Seaborn Heatmap**.
+
+---
+
+##  Technologies Used
+
+- Python
+- NumPy
+- Pandas
+- Matplotlib
+- Seaborn
+- Scikit-learn (for evaluation utilities)
+
+---
+
+##  Example Output
+ Accurcy was around 96.5 percentage
+
+
+
+Confusion Matrix visualization shows:
+
+- True Positives
+- True Negatives
+- False Positives
+- False Negatives
+
+---
+
+##  Learning Outcomes
+
+This project helps understand:
+
+- How **Decision Trees split data**
+- How **Gini Impurity works**
+- How **Random Forest improves model performance**
+- How **ensemble methods reduce overfitting**
+
+---
